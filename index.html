@@ -300,6 +300,62 @@
     margin-bottom: 2px;
   }
 
+  /* DRAW MOCK */
+  .draw-mock {
+    width: 100%;
+    max-width: 320px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .draw-mock-canvas {
+    background: #fafafa;
+    padding: 16px 12px 8px;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .draw-mock-canvas svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .draw-mock-tools {
+    display: flex;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #f0f0f0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .draw-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .draw-color.active {
+    border-color: #333;
+    transform: scale(1.2);
+  }
+
+  .draw-mock-word {
+    text-align: center;
+    padding: 6px;
+    font-family: 'SF Mono', Consolas, monospace;
+    color: #555;
+    background: #f8f8f8;
+    border-top: 1px solid #eee;
+    font-size: 13px;
+    letter-spacing: 3px;
+  }
+
   .project-info {
     padding: 32px;
   }
@@ -524,7 +580,7 @@
 <section id="projects">
   <div class="container">
     <h2 class="section-title">Мои работы</h2>
-    <p class="section-sub">Вот один из проектов, который я делал с нуля — от архитектуры до деплоя</p>
+    <p class="section-sub">Проекты, которые я делал с нуля — от архитектуры до деплоя</p>
 
     <div class="projects">
       <div class="project">
@@ -580,6 +636,66 @@
           </div>
         </div>
       </div>
+
+      <div class="project">
+        <div class="project-preview">
+          <div class="draw-mock">
+            <div class="draw-mock-canvas">
+              <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="160" cy="30" r="14" fill="none" stroke="#ff9800" stroke-width="3" stroke-linecap="round"/>
+                <line x1="160" y1="8" x2="160" y2="14" stroke="#ff9800" stroke-width="3" stroke-linecap="round"/>
+                <line x1="160" y1="46" x2="160" y2="52" stroke="#ff9800" stroke-width="3" stroke-linecap="round"/>
+                <line x1="138" y1="30" x2="144" y2="30" stroke="#ff9800" stroke-width="3" stroke-linecap="round"/>
+                <line x1="176" y1="30" x2="182" y2="30" stroke="#ff9800" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 60 110 L 60 70 L 95 45 L 130 70 L 130 110 Z" fill="none" stroke="#e94560" stroke-width="3" stroke-linejoin="round"/>
+                <rect x="85" y="80" width="20" height="30" fill="none" stroke="#795548" stroke-width="3"/>
+                <line x1="30" y1="115" x2="30" y2="90" stroke="#795548" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="30" cy="80" r="14" fill="none" stroke="#4caf50" stroke-width="3"/>
+                <line x1="0" y1="115" x2="200" y2="115" stroke="#4caf50" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="draw-mock-word">Д О М И К</div>
+            <div class="draw-mock-tools">
+              <span class="draw-color" style="background:#000"></span>
+              <span class="draw-color" style="background:#e94560"></span>
+              <span class="draw-color" style="background:#ff9800 ;border-color:#ff9800"></span>
+              <span class="draw-color active" style="background:#4caf50"></span>
+              <span class="draw-color" style="background:#2196f3"></span>
+              <span class="draw-color" style="background:#9c27b0"></span>
+              <span class="draw-color" style="background:#795548"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-info">
+          <span class="project-tag">Веб-приложение</span>
+          <h3>Многопользовательская рисовалка</h3>
+          <p class="project-desc">Игра по типу skribbl: один игрок рисует загаданное слово, остальные угадывают в чате. Все штрихи передаются в реальном времени.</p>
+
+          <ul class="project-features">
+            <li>Комнаты по 6-значному коду, до 10 игроков</li>
+            <li>Палитра, толщина кисти, ластик, очистка холста</li>
+            <li>3 слова на выбор для рисующего, словарь на 280+ слов</li>
+            <li>Очки за скорость угадывания, бонус рисующему</li>
+            <li>Адаптив под мобильные с поддержкой касаний</li>
+          </ul>
+
+          <div class="project-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">aiohttp</span>
+            <span class="stack-tag">WebSocket</span>
+            <span class="stack-tag">Canvas API</span>
+            <span class="stack-tag">JavaScript</span>
+          </div>
+
+          <p class="project-note">Первая загрузка демо может занять до минуты — backend на бесплатном хостинге засыпает после простоя. Просто подождите, страница откроется.</p>
+
+          <div class="project-actions">
+            <a href="https://draw-together-22bx.onrender.com/" class="btn btn-primary" target="_blank">Открыть демо</a>
+            <a href="https://github.com/Andrewshpik/draw-together" class="btn btn-outline" target="_blank">Код на GitHub</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -595,7 +711,9 @@
       <div class="skill">JavaScript</div>
       <div class="skill">Python</div>
       <div class="skill">asyncio</div>
+      <div class="skill">aiohttp</div>
       <div class="skill">WebSocket</div>
+      <div class="skill">Canvas API</div>
       <div class="skill">Git</div>
       <div class="skill">Render / Vercel</div>
     </div>

@@ -356,6 +356,87 @@
     letter-spacing: 3px;
   }
 
+  /* CAFE MOCK */
+  .cafe-mock {
+    width: 100%;
+    max-width: 320px;
+    background: #faf6ef;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    color: #2d1f15;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .cafe-mock-head {
+    padding: 14px 16px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(45, 31, 21, 0.08);
+  }
+
+  .cafe-mock-logo {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cafe-mock-logo svg {
+    width: 18px;
+    height: 18px;
+    color: #c47a3d;
+  }
+
+  .cafe-mock-nav {
+    display: flex;
+    gap: 10px;
+    font-size: 11px;
+    color: #5a4a3d;
+  }
+
+  .cafe-mock-body {
+    padding: 18px 16px;
+    text-align: center;
+  }
+
+  .cafe-mock-body .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: #c47a3d;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cafe-mock-body h4 {
+    font-family: Georgia, serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: #2d1f15;
+  }
+
+  .cafe-mock-cup {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 12px;
+    color: #c47a3d;
+  }
+
+  .cafe-mock-cta {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #2d1f15;
+    color: #faf6ef;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
   .project-info {
     padding: 32px;
   }
@@ -693,6 +774,63 @@
           <div class="project-actions">
             <a href="https://draw-together-22bx.onrender.com/" class="btn btn-primary" target="_blank">Открыть демо</a>
             <a href="https://github.com/Andrewshpik/draw-together" class="btn btn-outline" target="_blank">Код на GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-preview">
+          <div class="cafe-mock">
+            <div class="cafe-mock-head">
+              <div class="cafe-mock-logo">
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2">
+                  <ellipse cx="16" cy="16" rx="9" ry="13"/>
+                  <path d="M 16 4 Q 12 16 16 28"/>
+                </svg>
+                <span>Зерно</span>
+              </div>
+              <div class="cafe-mock-nav">
+                <span>Меню</span>
+                <span>Контакты</span>
+              </div>
+            </div>
+            <div class="cafe-mock-body">
+              <div class="eyebrow">кофейня с 2018 года</div>
+              <svg class="cafe-mock-cup" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 30h38v18a14 14 0 01-14 14h-10a14 14 0 01-14-14V30z"/>
+                <path d="M56 34h6a6 6 0 010 12h-6"/>
+                <path d="M28 12c-2 2-2 4 0 6M36 12c-2 2-2 4 0 6M44 12c-2 2-2 4 0 6"/>
+              </svg>
+              <h4>Кофе, который<br>стоит того,<br>чтобы остановиться</h4>
+              <span class="cafe-mock-cta">Посмотреть меню</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-info">
+          <span class="project-tag">Лендинг</span>
+          <h3>Лендинг для кофейни</h3>
+          <p class="project-desc">Одностраничный сайт для кофейни «Зерно». Тёплый минимализм, вся структура в одном экране без сборщиков и зависимостей.</p>
+
+          <ul class="project-features">
+            <li>Hero, преимущества, меню с табами, галерея, отзывы, контакты</li>
+            <li>Sticky-хедер, бургер-меню, плавный скролл</li>
+            <li>Появление секций при скролле через IntersectionObserver</li>
+            <li>Полный адаптив под мобильные и планшеты</li>
+            <li>Кнопка маршрута с deep-link на Яндекс.Карты</li>
+          </ul>
+
+          <div class="project-stack">
+            <span class="stack-tag">HTML5</span>
+            <span class="stack-tag">CSS3</span>
+            <span class="stack-tag">JavaScript</span>
+            <span class="stack-tag">Адаптив</span>
+            <span class="stack-tag">GitHub Pages</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="https://andrewshpik.github.io/coffee-landing/" class="btn btn-primary" target="_blank">Открыть демо</a>
+            <a href="https://github.com/Andrewshpik/coffee-landing" class="btn btn-outline" target="_blank">Код на GitHub</a>
           </div>
         </div>
       </div>

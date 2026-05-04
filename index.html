@@ -365,6 +365,25 @@
     flex-wrap: wrap;
   }
 
+  .project-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: rgba(255, 189, 46, 0.08);
+    border: 1px solid rgba(255, 189, 46, 0.3);
+    border-radius: 10px;
+    font-size: 13px;
+    color: #ffd97a;
+    line-height: 1.5;
+  }
+
+  .project-note::before {
+    content: '⚠️';
+    flex-shrink: 0;
+  }
+
   /* SKILLS */
   .skills {
     display: flex;
@@ -552,6 +571,8 @@
             <span class="stack-tag">JavaScript</span>
             <span class="stack-tag">HTML/CSS</span>
           </div>
+
+          <p class="project-note">Первая загрузка демо может занять до минуты — backend на бесплатном хостинге засыпает после простоя. Просто подождите, страница откроется.</p>
 
           <div class="project-actions">
             <a href="https://chat-hf61.onrender.com/" class="btn btn-primary" target="_blank">Открыть демо</a>

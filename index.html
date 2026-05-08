@@ -356,6 +356,113 @@
     letter-spacing: 3px;
   }
 
+  /* WAVE SHOOTER MOCK */
+  .wave-mock {
+    width: 100%;
+    max-width: 320px;
+    background: #0a0a12;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    position: relative;
+  }
+
+  .wave-mock-scene {
+    aspect-ratio: 4 / 3;
+    background:
+      radial-gradient(ellipse at 50% 35%, rgba(255, 216, 74, 0.12), transparent 55%),
+      linear-gradient(180deg, #0e1a14 0%, #2a3a25 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wave-mock-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(58, 82, 48, 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(58, 82, 48, 0.5) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: -1px -1px;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
+  }
+
+  .wave-mock-scene .player {
+    position: absolute;
+    left: 50%; top: 62%;
+    width: 28px; height: 28px;
+    margin-left: -14px; margin-top: -14px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffe79a, #ffd84a 60%, #c89a20);
+    box-shadow: 0 0 14px rgba(255, 216, 74, 0.6), 0 4px 6px rgba(0, 0, 0, 0.6);
+  }
+
+  .wave-mock-scene .player::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 100%;
+    width: 14px; height: 6px;
+    margin-top: -3px;
+    background: #2a2a36;
+    border-radius: 1px;
+  }
+
+  .wave-mock-scene .enemy {
+    position: absolute;
+    background: #c83a3a;
+    border: 2px solid #3a0a0a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .wave-mock-scene .bullet {
+    position: absolute;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #fff3a8;
+    box-shadow: 0 0 8px #ff8a3a;
+  }
+
+  .wave-mock-scene .orb {
+    position: absolute;
+    width: 8px; height: 8px;
+    background: #6bd0ff;
+    transform: rotate(45deg);
+    box-shadow: 0 0 8px #4a9bff;
+  }
+
+  .wave-mock-hud {
+    position: absolute;
+    top: 8px; left: 8px; right: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .wave-mock-hud .bar {
+    width: 50%;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .wave-mock-hud .bar > div { height: 100%; }
+  .wave-mock-hud .bar.hp > div { width: 65%; background: linear-gradient(90deg, #e23b3b, #ff6b6b); }
+  .wave-mock-hud .bar.xp > div { width: 40%; background: linear-gradient(90deg, #4a9bff, #6bd0ff); }
+
+  .wave-mock-stats {
+    position: absolute;
+    top: 8px; right: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #e8e8f0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+    letter-spacing: 0.5px;
+    text-align: right;
+    line-height: 1.4;
+  }
+
   /* CAFE MOCK */
   .cafe-mock {
     width: 100%;
@@ -780,6 +887,61 @@
 
       <div class="project">
         <div class="project-preview">
+          <div class="wave-mock">
+            <div class="wave-mock-scene">
+              <div class="wave-mock-grid"></div>
+              <div class="enemy" style="left:14%;top:18%;width:14px;height:14px"></div>
+              <div class="enemy" style="left:78%;top:22%;width:16px;height:16px"></div>
+              <div class="enemy" style="left:30%;top:38%;width:20px;height:20px"></div>
+              <div class="enemy" style="left:68%;top:48%;width:24px;height:24px"></div>
+              <div class="enemy" style="left:18%;top:74%;width:26px;height:26px"></div>
+              <div class="bullet" style="left:55%;top:55%"></div>
+              <div class="bullet" style="left:62%;top:50%"></div>
+              <div class="bullet" style="left:48%;top:48%"></div>
+              <div class="orb" style="left:42%;top:80%"></div>
+              <div class="orb" style="left:72%;top:78%"></div>
+              <div class="player"></div>
+              <div class="wave-mock-hud">
+                <div class="bar hp"><div></div></div>
+                <div class="bar xp"><div></div></div>
+              </div>
+              <div class="wave-mock-stats">
+                Lvl 7<br>184 kills
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-info">
+          <span class="project-tag">Веб-игра</span>
+          <h3>3D-шутер на Three.js</h3>
+          <p class="project-desc">Top-down арена-шутер с волнами врагов, прокачкой и боссами. Запускается в браузере по ссылке без установки и без бэкенда.</p>
+
+          <ul class="project-features">
+            <li>Полноценная 3D-сцена с тенями, туманом и динамическим освещением</li>
+            <li>4 типа врагов: гранты, скауты, танки, дальнобойные стрелки</li>
+            <li>Боссы каждые 60 секунд с растущими HP и уроном</li>
+            <li>9 апгрейдов на выбор каждый уровень: мультивыстрел, пробивание, магнит и др.</li>
+            <li>Все звуки синтезированы через Web Audio API — без файлов</li>
+          </ul>
+
+          <div class="project-stack">
+            <span class="stack-tag">Three.js</span>
+            <span class="stack-tag">WebGL</span>
+            <span class="stack-tag">JavaScript</span>
+            <span class="stack-tag">Web Audio API</span>
+            <span class="stack-tag">GitHub Pages</span>
+          </div>
+
+          <div class="project-actions">
+            <a href="https://andrewshpik.github.io/wave-shooter-3d/" class="btn btn-primary" target="_blank">Открыть демо</a>
+            <a href="https://github.com/Andrewshpik/wave-shooter-3d" class="btn btn-outline" target="_blank">Код на GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-preview">
           <div class="cafe-mock">
             <div class="cafe-mock-head">
               <div class="cafe-mock-logo">
@@ -852,8 +1014,9 @@
       <div class="skill">aiohttp</div>
       <div class="skill">WebSocket</div>
       <div class="skill">Canvas API</div>
+      <div class="skill">Three.js / WebGL</div>
       <div class="skill">Git</div>
-      <div class="skill">Render / Vercel</div>
+      <div class="skill">Render / Vercel / GitHub Pages</div>
     </div>
   </div>
 </section>

@@ -809,6 +809,65 @@
     border-top: 1px solid var(--border);
     margin-top: 40px;
   }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .container { padding: 0 16px; }
+
+    header { padding: 14px 0; }
+    .logo { font-size: 17px; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 13px; }
+
+    .hero { padding: 50px 0 40px; }
+    .hero p { font-size: 16px; margin-bottom: 28px; }
+    .cta { gap: 10px; width: 100%; }
+    .btn { padding: 12px 20px; font-size: 14px; }
+    .cta .btn { flex: 1 1 auto; text-align: center; min-width: 140px; }
+
+    section { padding: 50px 0; }
+    .section-title { font-size: 26px; }
+    .section-sub { font-size: 14px; margin-bottom: 32px; }
+
+    .services { grid-template-columns: 1fr; gap: 14px; }
+    .service { padding: 22px; }
+
+    .projects { gap: 18px; }
+    .project-preview { padding: 22px; min-height: 240px; }
+    .project-info { padding: 22px; }
+    .project h3 { font-size: 20px; }
+    .project-desc { font-size: 14px; }
+    .project-features li { font-size: 13px; }
+    .project-actions { gap: 10px; }
+    .project-actions .btn { flex: 1 1 auto; text-align: center; min-width: 140px; }
+
+    .contact-card { padding: 26px 20px; }
+    .contact-card h2 { font-size: 22px; }
+    .contact-card p { font-size: 14px; }
+    .contact-row { padding: 12px 14px; flex-wrap: wrap; gap: 4px; }
+    .contact-row span:not(.label) { font-size: 14px; word-break: break-all; }
+
+    footer { padding: 28px 0; font-size: 13px; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links { gap: 10px; }
+    .nav-links a { font-size: 12px; }
+    .logo { font-size: 15px; }
+
+    .hero { padding: 36px 0 30px; }
+    .hero p { font-size: 15px; }
+
+    section { padding: 40px 0; }
+    .section-title { font-size: 22px; }
+
+    .project-preview { padding: 18px; min-height: 220px; }
+    .project-info { padding: 18px; }
+    .project h3 { font-size: 18px; }
+
+    .skills { gap: 8px; }
+    .skill { font-size: 13px; padding: 8px 14px; }
+  }
 </style>
 </head>
 <body>
@@ -845,28 +904,28 @@
         <div class="service-icon">🎨</div>
         <h3>Лендинги</h3>
         <p>Одностраничные сайты под товар или услугу. Адаптив, формы, анимации.</p>
-        <div class="price">от 3 000 ₽</div>
+        <div class="price">от 25 000 ₽</div>
       </div>
 
       <div class="service">
         <div class="service-icon">💼</div>
         <h3>Сайты-визитки</h3>
         <p>Многостраничные сайты для бизнеса с админкой и формой обратной связи.</p>
-        <div class="price">от 8 000 ₽</div>
+        <div class="price">от 25 000 ₽</div>
       </div>
 
       <div class="service">
         <div class="service-icon">⚡</div>
         <h3>Веб-приложения</h3>
         <p>Realtime-приложения на WebSocket: чаты, дашборды, игры, коллаборация.</p>
-        <div class="price">от 15 000 ₽</div>
+        <div class="price">от 125 000 ₽</div>
       </div>
 
       <div class="service">
         <div class="service-icon">🔧</div>
         <h3>Доработки</h3>
         <p>Правки на готовых сайтах, баги, адаптив, ускорение загрузки.</p>
-        <div class="price">от 1 000 ₽</div>
+        <div class="price">от 3 000 ₽/час</div>
       </div>
     </div>
   </div>

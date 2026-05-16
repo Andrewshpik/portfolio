@@ -980,16 +980,6 @@
     .giscus-wrap { padding: 18px; }
   }
 
-  .reviews-cta {
-    max-width: 760px;
-    margin: 0 auto 28px;
-    text-align: center;
-  }
-
-  .reviews-cta .btn {
-    padding: 14px 32px;
-  }
-
   .reviews-divider {
     max-width: 760px;
     margin: 32px auto 24px;
@@ -1012,141 +1002,23 @@
   .reviews-divider::before { left: 0; }
   .reviews-divider::after  { right: 0; }
 
-  /* MODAL */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(5, 6, 18, 0.7);
-    backdrop-filter: blur(6px);
-    z-index: 300;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .modal-overlay.open {
-    display: flex;
-    opacity: 1;
-  }
-
-  .modal-dialog {
-    background: #14152b;
+  /* CUSDIS */
+  .cusdis-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 28px;
-    max-width: 460px;
-    width: 100%;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    transform: translateY(20px) scale(0.97);
-    transition: transform 0.2s;
   }
 
-  .modal-overlay.open .modal-dialog {
-    transform: translateY(0) scale(1);
+  .cusdis-wrap #cusdis_thread iframe {
+    width: 100% !important;
+    background: transparent !important;
   }
 
-  .modal-close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-size: 24px;
-    line-height: 1;
-    padding: 6px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .modal-close:hover {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--text);
-  }
-
-  .modal-dialog h3 {
-    font-size: 20px;
-    margin-bottom: 6px;
-    padding-right: 28px;
-  }
-
-  .modal-dialog .modal-sub {
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-
-  .modal-form .form-row {
-    margin-bottom: 14px;
-  }
-
-  .modal-form label {
-    display: block;
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-
-  .modal-form input,
-  .modal-form textarea {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    color: var(--text);
-    font-family: inherit;
-    font-size: 15px;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .modal-form input:focus,
-  .modal-form textarea:focus {
-    outline: none;
-    border-color: rgba(233, 69, 96, 0.5);
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  .modal-form textarea {
-    resize: vertical;
-    min-height: 110px;
-  }
-
-  .modal-form .btn {
-    width: 100%;
-    margin-top: 4px;
-  }
-
-  .modal-status {
-    margin-top: 14px;
-    padding: 12px 14px;
-    border-radius: 10px;
-    font-size: 14px;
-    display: none;
-  }
-
-  .modal-status.ok {
-    display: block;
-    background: rgba(76, 175, 80, 0.12);
-    border: 1px solid rgba(76, 175, 80, 0.35);
-    color: #a5e2a8;
-  }
-
-  .modal-status.err {
-    display: block;
-    background: rgba(233, 69, 96, 0.12);
-    border: 1px solid rgba(233, 69, 96, 0.35);
-    color: #f4a5b3;
-  }
-
-  @media (max-width: 480px) {
-    .modal-dialog { padding: 22px; }
-    .modal-dialog h3 { font-size: 18px; }
+  @media (max-width: 768px) {
+    .cusdis-wrap { padding: 18px; }
   }
 
   /* CONTACT */
@@ -1785,8 +1657,16 @@
     <h2 class="section-title">Отзывы</h2>
     <p class="section-sub">Оставь короткий отзыв или прочитай, что пишут другие</p>
 
-    <div class="reviews-cta">
-      <button type="button" class="btn btn-primary" id="openReviewModal">Оставить отзыв</button>
+    <div class="cusdis-wrap">
+      <div id="cusdis_thread"
+        data-host="https://cusdis.com"
+        data-app-id="fc209bff-9c9e-4ae0-9994-0b9a929e77eb"
+        data-page-id="portfolio-home"
+        data-page-url="https://andrewshpik.github.io/portfolio/"
+        data-page-title="Отзывы — Портфолио Андрея"
+        data-theme="dark">
+      </div>
+      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
     </div>
 
     <div class="reviews-divider">или через GitHub-аккаунт</div>
@@ -1826,122 +1706,6 @@
     © 2026 Андрей. Сделано вручную, без конструкторов.
   </div>
 </footer>
-
-<div class="modal-overlay" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle" hidden>
-  <div class="modal-dialog">
-    <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
-    <h3 id="reviewModalTitle">Оставить отзыв</h3>
-    <p class="modal-sub">Заполни два поля — отправится мне в Google-форму.</p>
-
-    <form class="modal-form" id="googleReviewForm" novalidate>
-      <div class="form-row">
-        <label for="grfName">Имя</label>
-        <input type="text" id="grfName" name="name" maxlength="60" autocomplete="name" required>
-      </div>
-      <div class="form-row">
-        <label for="grfText">Отзыв</label>
-        <textarea id="grfText" name="text" maxlength="1000" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" id="grfSubmit">Отправить</button>
-      <div class="modal-status" id="grfStatus" role="status" aria-live="polite"></div>
-    </form>
-  </div>
-</div>
-
-<script>
-(function () {
-  // === НАСТРОЙКИ GOOGLE FORM — заменить на свои значения ===
-  const FORM_ID = '1FAIpQLSfB_fFxzkLleZdIv16pIYQhasWAcH7NSSnnyw6VsuiYNEL-zA';
-  const ENTRY_NAME = 'entry.1636239130';
-  const ENTRY_REVIEW = 'entry.1399372957';
-  // =========================================================
-
-  const FORM_URL = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
-
-  const overlay = document.getElementById('reviewModal');
-  const openBtn = document.getElementById('openReviewModal');
-  const form = document.getElementById('googleReviewForm');
-  const nameInput = document.getElementById('grfName');
-  const textInput = document.getElementById('grfText');
-  const submitBtn = document.getElementById('grfSubmit');
-  const status = document.getElementById('grfStatus');
-
-  let lastActive = null;
-
-  function openModal() {
-    lastActive = document.activeElement;
-    overlay.hidden = false;
-    requestAnimationFrame(() => overlay.classList.add('open'));
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => nameInput.focus(), 150);
-  }
-
-  function closeModal() {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-    setTimeout(() => {
-      overlay.hidden = true;
-      resetStatus();
-      if (lastActive && typeof lastActive.focus === 'function') lastActive.focus();
-    }, 200);
-  }
-
-  function resetStatus() {
-    status.className = 'modal-status';
-    status.textContent = '';
-  }
-
-  function showStatus(kind, msg) {
-    status.className = 'modal-status ' + kind;
-    status.textContent = msg;
-  }
-
-  openBtn.addEventListener('click', openModal);
-
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay || e.target.closest('[data-modal-close]')) closeModal();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !overlay.hidden) closeModal();
-  });
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    resetStatus();
-
-    const name = nameInput.value.trim();
-    const text = textInput.value.trim();
-
-    if (!name) { showStatus('err', 'Укажи имя'); nameInput.focus(); return; }
-    if (text.length < 5) { showStatus('err', 'Отзыв слишком короткий'); textInput.focus(); return; }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Отправляю...';
-
-    const body = new URLSearchParams();
-    body.append(ENTRY_NAME, name);
-    body.append(ENTRY_REVIEW, text);
-
-    try {
-      await fetch(FORM_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString()
-      });
-      showStatus('ok', 'Спасибо, отзыв отправлен!');
-      form.reset();
-      setTimeout(closeModal, 1800);
-    } catch (err) {
-      showStatus('err', 'Не удалось отправить. Проверь интернет и попробуй ещё раз.');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Отправить';
-    }
-  });
-})();
-</script>
 
 </body>
 </html>

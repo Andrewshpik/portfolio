@@ -961,23 +961,100 @@
     font-size: 14px;
   }
 
-  /* CUSDIS */
-  .cusdis-wrap {
+  /* REVIEWS CTA */
+  .reviews-cta {
     max-width: 760px;
     margin: 0 auto;
-    background: var(--card);
+    text-align: center;
+  }
+
+  .reviews-cta .btn {
+    padding: 14px 32px;
+    font-size: 15px;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 6, 18, 0.75);
+    backdrop-filter: blur(6px);
+    z-index: 300;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    overflow-y: auto;
+  }
+
+  .modal-overlay.open {
+    display: flex;
+    opacity: 1;
+  }
+
+  .modal-dialog {
+    background: #14152b;
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 28px;
+    max-width: 700px;
+    width: 100%;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.2s;
   }
 
-  .cusdis-wrap #cusdis_thread iframe {
+  .modal-overlay.open .modal-dialog {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 26px;
+    line-height: 1;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    z-index: 1;
+  }
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+  }
+
+  .modal-dialog h3 {
+    font-size: 22px;
+    margin-bottom: 6px;
+    padding-right: 32px;
+  }
+
+  .modal-dialog .modal-sub {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .modal-cusdis #cusdis_thread iframe {
     width: 100% !important;
     background: transparent !important;
   }
 
-  @media (max-width: 768px) {
-    .cusdis-wrap { padding: 18px; }
+  @media (max-width: 600px) {
+    .modal-overlay { padding: 12px; }
+    .modal-dialog { padding: 22px; }
+    .modal-dialog h3 { font-size: 19px; }
   }
 
   /* CONTACT */
@@ -1614,101 +1691,10 @@
 <section id="reviews">
   <div class="container">
     <h2 class="section-title">Отзывы</h2>
-    <p class="section-sub">Оставь короткий отзыв или прочитай, что пишут другие</p>
+    <p class="section-sub">Открой окно — прочитай отзывы или оставь свой</p>
 
-    <div class="cusdis-wrap">
-      <div id="cusdis_thread"
-        data-host="https://cusdis.com"
-        data-app-id="fc209bff-9c9e-4ae0-9994-0b9a929e77eb"
-        data-page-id="portfolio-home"
-        data-page-url="https://andrewshpik.github.io/portfolio/"
-        data-page-title="Отзывы — Портфолио Андрея"
-        data-theme="light">
-      </div>
-      <script>
-        window.CUSDIS_LOCALE = {
-          powered_by: 'Работает на Cusdis',
-          post_comment: 'Отправить',
-          loading: 'Загрузка',
-          email: 'Email (необязательно)',
-          nickname: 'Имя',
-          reply_placeholder: 'Ваш отзыв...',
-          reply_btn: 'Ответить',
-          sending: 'Отправка...',
-          mod_badge: 'МОД',
-          content_is_required: 'Текст отзыва обязателен',
-          nickname_is_required: 'Имя обязательно',
-          comment_has_been_sent: 'Спасибо! Отзыв отправлен и появится после проверки.'
-        };
-      </script>
-      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-      <script>
-        (function () {
-          const MINT_CSS = `
-            html, body { background: #6cc299 !important; color: #0d2a1e !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; }
-            input, textarea {
-              background: #ffffff !important;
-              color: #163d2c !important;
-              border: 1px solid rgba(22, 61, 44, 0.2) !important;
-              border-radius: 8px !important;
-            }
-            input::placeholder, textarea::placeholder { color: #2c5a44 !important; opacity: 0.55 !important; }
-            input:focus, textarea:focus {
-              outline: none !important;
-              border-color: #163d2c !important;
-              box-shadow: 0 0 0 3px rgba(22, 61, 44, 0.15) !important;
-            }
-            button, .cusdis-btn {
-              background: #163d2c !important;
-              color: #d4f5e6 !important;
-              border: none !important;
-              border-radius: 8px !important;
-            }
-            button:hover { background: #0d2a1e !important; }
-            a { color: #163d2c !important; }
-            .text-gray-500, .text-gray-400, .text-gray-300, .text-xs { color: #2c5a44 !important; }
-            .dark\\:text-gray-100, .dark\\:text-gray-500 { color: #163d2c !important; }
-          `;
-
-          function inject(iframe) {
-            try {
-              const doc = iframe.contentDocument;
-              if (!doc || !doc.head) return false;
-              if (doc.getElementById('mint-cusdis')) return true;
-              const style = doc.createElement('style');
-              style.id = 'mint-cusdis';
-              style.textContent = MINT_CSS;
-              doc.head.appendChild(style);
-              return true;
-            } catch (e) {
-              return false;
-            }
-          }
-
-          function watch() {
-            const wrap = document.querySelector('.cusdis-wrap');
-            if (!wrap) return;
-            const tryInject = () => {
-              const iframe = wrap.querySelector('iframe');
-              if (!iframe) return false;
-              iframe.addEventListener('load', () => inject(iframe));
-              return inject(iframe);
-            };
-            if (tryInject()) return;
-            const obs = new MutationObserver(() => {
-              if (tryInject()) obs.disconnect();
-            });
-            obs.observe(wrap, { childList: true, subtree: true });
-            setTimeout(() => obs.disconnect(), 15000);
-          }
-
-          if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', watch);
-          } else {
-            watch();
-          }
-        })();
-      </script>
+    <div class="reviews-cta">
+      <button type="button" class="btn btn-primary" id="openReviewsModal">Посмотреть отзывы</button>
     </div>
   </div>
 </section>
@@ -1727,6 +1713,141 @@
     © 2026 Андрей. Сделано вручную, без конструкторов.
   </div>
 </footer>
+
+<div class="modal-overlay" id="reviewsModal" role="dialog" aria-modal="true" aria-labelledby="reviewsModalTitle" hidden>
+  <div class="modal-dialog modal-cusdis">
+    <button type="button" class="modal-close" data-modal-close aria-label="Закрыть">×</button>
+    <h3 id="reviewsModalTitle">Отзывы</h3>
+    <p class="modal-sub">Прочитай, что пишут другие, или оставь свой отзыв.</p>
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="fc209bff-9c9e-4ae0-9994-0b9a929e77eb"
+      data-page-id="portfolio-home"
+      data-page-url="https://andrewshpik.github.io/portfolio/"
+      data-page-title="Отзывы — Портфолио Андрея"
+      data-theme="light">
+    </div>
+  </div>
+</div>
+
+<script>
+window.CUSDIS_LOCALE = {
+  powered_by: 'Работает на Cusdis',
+  post_comment: 'Отправить',
+  loading: 'Загрузка',
+  email: 'Email (необязательно)',
+  nickname: 'Имя',
+  reply_placeholder: 'Ваш отзыв...',
+  reply_btn: 'Ответить',
+  sending: 'Отправка...',
+  mod_badge: 'МОД',
+  content_is_required: 'Текст отзыва обязателен',
+  nickname_is_required: 'Имя обязательно',
+  comment_has_been_sent: 'Спасибо! Отзыв отправлен и появится после проверки.'
+};
+
+(function () {
+  const overlay = document.getElementById('reviewsModal');
+  const openBtn = document.getElementById('openReviewsModal');
+  const dialog = overlay.querySelector('.modal-dialog');
+  let cusdisLoaded = false;
+  let lastActive = null;
+
+  const MINT_CSS = `
+    html, body { background: #6cc299 !important; color: #0d2a1e !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; }
+    input, textarea {
+      background: #ffffff !important;
+      color: #163d2c !important;
+      border: 1px solid rgba(22, 61, 44, 0.2) !important;
+      border-radius: 8px !important;
+    }
+    input::placeholder, textarea::placeholder { color: #2c5a44 !important; opacity: 0.55 !important; }
+    input:focus, textarea:focus {
+      outline: none !important;
+      border-color: #163d2c !important;
+      box-shadow: 0 0 0 3px rgba(22, 61, 44, 0.15) !important;
+    }
+    button, .cusdis-btn {
+      background: #163d2c !important;
+      color: #d4f5e6 !important;
+      border: none !important;
+      border-radius: 8px !important;
+    }
+    button:hover { background: #0d2a1e !important; }
+    a { color: #163d2c !important; }
+    .text-gray-500, .text-gray-400, .text-gray-300, .text-xs { color: #2c5a44 !important; }
+    .dark\\:text-gray-100, .dark\\:text-gray-500 { color: #163d2c !important; }
+  `;
+
+  function injectMint(iframe) {
+    try {
+      const doc = iframe.contentDocument;
+      if (!doc || !doc.head) return false;
+      if (doc.getElementById('mint-cusdis')) return true;
+      const style = doc.createElement('style');
+      style.id = 'mint-cusdis';
+      style.textContent = MINT_CSS;
+      doc.head.appendChild(style);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function watchCusdis() {
+    const tryInject = () => {
+      const iframe = dialog.querySelector('iframe');
+      if (!iframe) return false;
+      iframe.addEventListener('load', () => injectMint(iframe));
+      return injectMint(iframe);
+    };
+    if (tryInject()) return;
+    const obs = new MutationObserver(() => {
+      if (tryInject()) obs.disconnect();
+    });
+    obs.observe(dialog, { childList: true, subtree: true });
+    setTimeout(() => obs.disconnect(), 15000);
+  }
+
+  function loadCusdisOnce() {
+    if (cusdisLoaded) return;
+    cusdisLoaded = true;
+    const s = document.createElement('script');
+    s.src = 'https://cusdis.com/js/cusdis.es.js';
+    s.async = true;
+    s.defer = true;
+    document.body.appendChild(s);
+    watchCusdis();
+  }
+
+  function openModal() {
+    lastActive = document.activeElement;
+    overlay.hidden = false;
+    requestAnimationFrame(() => overlay.classList.add('open'));
+    document.body.style.overflow = 'hidden';
+    loadCusdisOnce();
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      overlay.hidden = true;
+      if (lastActive && typeof lastActive.focus === 'function') lastActive.focus();
+    }, 200);
+  }
+
+  openBtn.addEventListener('click', openModal);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target.closest('[data-modal-close]')) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !overlay.hidden) closeModal();
+  });
+})();
+</script>
 
 </body>
 </html>

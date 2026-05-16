@@ -961,229 +961,23 @@
     font-size: 14px;
   }
 
-  /* REVIEWS */
-  .reviews-wrap {
+  /* GISCUS */
+  .giscus-wrap {
     max-width: 760px;
     margin: 0 auto;
-    display: grid;
-    gap: 24px;
-  }
-
-  .review-form {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 28px;
   }
 
-  .review-form h3 {
-    font-size: 18px;
-    margin-bottom: 18px;
-  }
-
-  .form-row {
-    margin-bottom: 14px;
-  }
-
-  .form-row label {
-    display: block;
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-
-  .form-row input,
-  .form-row textarea {
+  .giscus-wrap .giscus,
+  .giscus-wrap .giscus-frame {
     width: 100%;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    color: var(--text);
-    font-family: inherit;
-    font-size: 15px;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .form-row input:focus,
-  .form-row textarea:focus {
-    outline: none;
-    border-color: rgba(233, 69, 96, 0.5);
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  .form-row textarea {
-    resize: vertical;
-    min-height: 90px;
-  }
-
-  .star-input {
-    display: inline-flex;
-    gap: 4px;
-    font-size: 28px;
-    line-height: 1;
-    user-select: none;
-  }
-
-  .star-input button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.18);
-    padding: 0 2px;
-    transition: color 0.15s, transform 0.15s;
-  }
-
-  .star-input button:hover {
-    transform: scale(1.1);
-  }
-
-  .star-input button.on,
-  .star-input.hover button.hover-on {
-    color: #ffbd2e;
-  }
-
-  .form-error {
-    color: var(--accent);
-    font-size: 13px;
-    margin-top: -6px;
-    margin-bottom: 12px;
-    min-height: 18px;
-  }
-
-  .reviews-list {
-    display: grid;
-    gap: 16px;
-  }
-
-  .reviews-empty {
-    text-align: center;
-    color: var(--muted);
-    padding: 24px;
-    background: var(--card);
-    border: 1px dashed var(--border);
-    border-radius: 16px;
-    font-size: 14px;
-  }
-
-  .review {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px 22px;
-    position: relative;
-  }
-
-  .review-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
-  }
-
-  .review-avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #ff9800);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 15px;
-    flex-shrink: 0;
-  }
-
-  .review-meta {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .review-name {
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 1.2;
-    margin-bottom: 2px;
-    word-break: break-word;
-  }
-
-  .review-date {
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  .review-stars {
-    color: #ffbd2e;
-    font-size: 15px;
-    letter-spacing: 1px;
-  }
-
-  .review-stars .off {
-    color: rgba(255, 255, 255, 0.15);
-  }
-
-  .review-text {
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.55;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
-
-  .review-actions {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    display: flex;
-    gap: 2px;
-  }
-
-  .review-action {
-    background: none;
-    border: none;
-    color: var(--muted);
-    cursor: pointer;
-    font-size: 15px;
-    padding: 4px 8px;
-    border-radius: 6px;
-    transition: background 0.2s, color 0.2s;
-    line-height: 1;
-  }
-
-  .review-action.edit:hover {
-    background: rgba(76, 175, 80, 0.12);
-    color: var(--accent2);
-  }
-
-  .review-action.delete:hover {
-    background: rgba(233, 69, 96, 0.1);
-    color: var(--accent);
-  }
-
-  .review-edit-form .form-row {
-    margin-bottom: 12px;
-  }
-
-  .review-edit-form .star-input {
-    font-size: 24px;
-  }
-
-  .review-edit-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 4px;
-  }
-
-  .review-edit-buttons .btn {
-    padding: 10px 20px;
-    font-size: 14px;
   }
 
   @media (max-width: 768px) {
-    .review-form { padding: 22px; }
-    .review { padding: 18px; }
+    .giscus-wrap { padding: 18px; }
   }
 
   /* CONTACT */
@@ -1820,39 +1614,25 @@
 <section id="reviews">
   <div class="container">
     <h2 class="section-title">Отзывы</h2>
-    <p class="section-sub">Оставь отзыв или прочитай, что пишут другие</p>
+    <p class="section-sub">Оставь отзыв или прочитай, что пишут другие — через GitHub-аккаунт</p>
 
-    <div class="reviews-wrap">
-      <form class="review-form" id="reviewForm" novalidate>
-        <h3>Оставить отзыв</h3>
-
-        <div class="form-row">
-          <label for="reviewName">Имя</label>
-          <input type="text" id="reviewName" maxlength="60" autocomplete="name" placeholder="Как вас зовут">
-        </div>
-
-        <div class="form-row">
-          <label>Оценка</label>
-          <div class="star-input" id="starInput" role="radiogroup" aria-label="Оценка от 1 до 5">
-            <button type="button" data-val="1" aria-label="1 звезда">★</button>
-            <button type="button" data-val="2" aria-label="2 звезды">★</button>
-            <button type="button" data-val="3" aria-label="3 звезды">★</button>
-            <button type="button" data-val="4" aria-label="4 звезды">★</button>
-            <button type="button" data-val="5" aria-label="5 звёзд">★</button>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <label for="reviewText">Отзыв</label>
-          <textarea id="reviewText" maxlength="1000" placeholder="Что понравилось, что нет — всё по делу"></textarea>
-        </div>
-
-        <div class="form-error" id="reviewError"></div>
-
-        <button type="submit" class="btn btn-primary">Опубликовать отзыв</button>
-      </form>
-
-      <div class="reviews-list" id="reviewsList"></div>
+    <div class="giscus-wrap">
+      <script src="https://giscus.app/client.js"
+        data-repo="Andrewshpik/comments_portfolio"
+        data-repo-id="R_kgDOSfETNg"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOSfETNs4C9K_M"
+        data-mapping="url"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ru"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+      </script>
     </div>
   </div>
 </section>
@@ -1872,249 +1652,6 @@
   </div>
 </footer>
 
-<script>
-(function () {
-  const STORAGE_KEY = 'portfolio_reviews_v1';
-  const form = document.getElementById('reviewForm');
-  const nameInput = document.getElementById('reviewName');
-  const textInput = document.getElementById('reviewText');
-  const errorBox = document.getElementById('reviewError');
-  const starInput = document.getElementById('starInput');
-  const starButtons = starInput.querySelectorAll('button');
-  const list = document.getElementById('reviewsList');
-
-  let rating = 0;
-  let editingId = null;
-
-  function paintStars(container, val) {
-    container.querySelectorAll('button').forEach(btn => {
-      btn.classList.toggle('on', Number(btn.dataset.val) <= val);
-    });
-  }
-
-  function setRating(val) {
-    rating = val;
-    paintStars(starInput, val);
-  }
-
-  function bindStarInput(container, getVal, setVal) {
-    const buttons = container.querySelectorAll('button');
-    buttons.forEach(btn => {
-      const val = Number(btn.dataset.val);
-      btn.addEventListener('click', () => {
-        setVal(val);
-        paintStars(container, val);
-      });
-      btn.addEventListener('mouseenter', () => {
-        container.classList.add('hover');
-        buttons.forEach(b => {
-          b.classList.toggle('hover-on', Number(b.dataset.val) <= val);
-        });
-      });
-    });
-    container.addEventListener('mouseleave', () => {
-      container.classList.remove('hover');
-      buttons.forEach(b => b.classList.remove('hover-on'));
-    });
-  }
-
-  bindStarInput(starInput, () => rating, (v) => { rating = v; });
-
-  function loadReviews() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return [];
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch {
-      return [];
-    }
-  }
-
-  function saveReviews(reviews) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
-  }
-
-  function escapeHtml(s) {
-    return s
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-
-  function formatDate(ts) {
-    const d = new Date(ts);
-    return d.toLocaleDateString('ru-RU', {
-      day: 'numeric', month: 'long', year: 'numeric'
-    });
-  }
-
-  function renderStars(n) {
-    let html = '';
-    for (let i = 1; i <= 5; i++) {
-      html += i <= n ? '★' : '<span class="off">★</span>';
-    }
-    return html;
-  }
-
-  function viewMarkup(r) {
-    const edited = r.updatedAt && r.updatedAt !== r.createdAt
-      ? ` <span title="${escapeHtml(formatDate(r.updatedAt))}">(ред.)</span>`
-      : '';
-    return `
-      <div class="review-actions">
-        <button class="review-action edit" type="button" data-action="edit" aria-label="Редактировать отзыв" title="Редактировать">✎</button>
-        <button class="review-action delete" type="button" data-action="delete" aria-label="Удалить отзыв" title="Удалить">✕</button>
-      </div>
-      <div class="review-head">
-        <div class="review-avatar">${escapeHtml(r.name.charAt(0).toUpperCase())}</div>
-        <div class="review-meta">
-          <div class="review-name">${escapeHtml(r.name)}</div>
-          <div class="review-date">${escapeHtml(formatDate(r.createdAt))}${edited}</div>
-        </div>
-        <div class="review-stars" aria-label="${r.rating} из 5">${renderStars(r.rating)}</div>
-      </div>
-      <div class="review-text">${escapeHtml(r.text)}</div>
-    `;
-  }
-
-  function editMarkup(r) {
-    const stars = [1,2,3,4,5].map(i =>
-      `<button type="button" data-val="${i}" class="${i <= r.rating ? 'on' : ''}" aria-label="${i}">★</button>`
-    ).join('');
-    return `
-      <form class="review-edit-form" data-edit-form>
-        <div class="form-row">
-          <label>Имя</label>
-          <input type="text" data-field="name" maxlength="60" value="${escapeHtml(r.name)}">
-        </div>
-        <div class="form-row">
-          <label>Оценка</label>
-          <div class="star-input" data-edit-stars role="radiogroup">${stars}</div>
-        </div>
-        <div class="form-row">
-          <label>Отзыв</label>
-          <textarea data-field="text" maxlength="1000">${escapeHtml(r.text)}</textarea>
-        </div>
-        <div class="form-error" data-edit-error></div>
-        <div class="review-edit-buttons">
-          <button type="submit" class="btn btn-primary">Сохранить</button>
-          <button type="button" class="btn btn-outline" data-action="cancel">Отмена</button>
-        </div>
-      </form>
-    `;
-  }
-
-  function render() {
-    const reviews = loadReviews();
-    if (reviews.length === 0) {
-      list.innerHTML = '<div class="reviews-empty">Отзывов пока нет. Будь первым 🚀</div>';
-      return;
-    }
-    list.innerHTML = reviews.map(r => {
-      const body = String(r.id) === String(editingId) ? editMarkup(r) : viewMarkup(r);
-      return `<div class="review" data-id="${r.id}">${body}</div>`;
-    }).join('');
-
-    if (editingId) {
-      const card = list.querySelector(`.review[data-id="${CSS.escape(String(editingId))}"]`);
-      if (card) {
-        const stars = card.querySelector('[data-edit-stars]');
-        const review = reviews.find(r => String(r.id) === String(editingId));
-        let editRating = review ? review.rating : 0;
-        bindStarInput(stars, () => editRating, (v) => { editRating = v; });
-        stars.dataset.value = String(editRating);
-        stars.addEventListener('click', (e) => {
-          const btn = e.target.closest('button[data-val]');
-          if (btn) stars.dataset.value = btn.dataset.val;
-        });
-      }
-    }
-  }
-
-  list.addEventListener('click', (e) => {
-    const actionBtn = e.target.closest('[data-action]');
-    if (!actionBtn) return;
-    const card = actionBtn.closest('.review');
-    if (!card) return;
-    const id = card.dataset.id;
-    const action = actionBtn.dataset.action;
-
-    if (action === 'delete') {
-      if (!confirm('Удалить этот отзыв?')) return;
-      const reviews = loadReviews().filter(r => String(r.id) !== String(id));
-      saveReviews(reviews);
-      if (String(editingId) === String(id)) editingId = null;
-      render();
-    } else if (action === 'edit') {
-      editingId = id;
-      render();
-    } else if (action === 'cancel') {
-      editingId = null;
-      render();
-    }
-  });
-
-  list.addEventListener('submit', (e) => {
-    const editForm = e.target.closest('[data-edit-form]');
-    if (!editForm) return;
-    e.preventDefault();
-    const card = editForm.closest('.review');
-    if (!card) return;
-    const id = card.dataset.id;
-    const errorBox = editForm.querySelector('[data-edit-error]');
-    errorBox.textContent = '';
-
-    const name = editForm.querySelector('[data-field="name"]').value.trim();
-    const text = editForm.querySelector('[data-field="text"]').value.trim();
-    const stars = editForm.querySelector('[data-edit-stars]');
-    const newRating = Number(stars.dataset.value || 0);
-
-    if (!name) { errorBox.textContent = 'Укажи имя'; return; }
-    if (newRating < 1) { errorBox.textContent = 'Поставь оценку от 1 до 5'; return; }
-    if (text.length < 5) { errorBox.textContent = 'Отзыв слишком короткий'; return; }
-
-    const reviews = loadReviews().map(r => {
-      if (String(r.id) !== String(id)) return r;
-      return { ...r, name, text, rating: newRating, updatedAt: Date.now() };
-    });
-    saveReviews(reviews);
-    editingId = null;
-    render();
-  });
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    errorBox.textContent = '';
-
-    const name = nameInput.value.trim();
-    const text = textInput.value.trim();
-
-    if (!name) { errorBox.textContent = 'Укажи имя'; return; }
-    if (rating < 1) { errorBox.textContent = 'Поставь оценку от 1 до 5'; return; }
-    if (text.length < 5) { errorBox.textContent = 'Отзыв слишком короткий'; return; }
-
-    const reviews = loadReviews();
-    reviews.unshift({
-      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-      name,
-      rating,
-      text,
-      createdAt: Date.now()
-    });
-    saveReviews(reviews);
-
-    nameInput.value = '';
-    textInput.value = '';
-    setRating(0);
-    render();
-  });
-
-  render();
-})();
-</script>
 
 </body>
 </html>

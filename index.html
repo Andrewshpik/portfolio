@@ -961,6 +961,200 @@
     font-size: 14px;
   }
 
+  /* REVIEWS */
+  .reviews-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    display: grid;
+    gap: 24px;
+  }
+
+  .review-form {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+  }
+
+  .review-form h3 {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .form-row {
+    margin-bottom: 14px;
+  }
+
+  .form-row label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .form-row input,
+  .form-row textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .form-row input:focus,
+  .form-row textarea:focus {
+    outline: none;
+    border-color: rgba(233, 69, 96, 0.5);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .form-row textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  .star-input {
+    display: inline-flex;
+    gap: 4px;
+    font-size: 28px;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .star-input button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.18);
+    padding: 0 2px;
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .star-input button:hover {
+    transform: scale(1.1);
+  }
+
+  .star-input button.on,
+  .star-input.hover button.hover-on {
+    color: #ffbd2e;
+  }
+
+  .form-error {
+    color: var(--accent);
+    font-size: 13px;
+    margin-top: -6px;
+    margin-bottom: 12px;
+    min-height: 18px;
+  }
+
+  .reviews-list {
+    display: grid;
+    gap: 16px;
+  }
+
+  .reviews-empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 24px;
+    background: var(--card);
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+    font-size: 14px;
+  }
+
+  .review {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 22px;
+    position: relative;
+  }
+
+  .review-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .review-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #ff9800);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .review-meta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .review-name {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.2;
+    margin-bottom: 2px;
+    word-break: break-word;
+  }
+
+  .review-date {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .review-stars {
+    color: #ffbd2e;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+
+  .review-stars .off {
+    color: rgba(255, 255, 255, 0.15);
+  }
+
+  .review-text {
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .review-delete {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .review-delete:hover {
+    background: rgba(233, 69, 96, 0.1);
+    color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .review-form { padding: 22px; }
+    .review { padding: 18px; }
+  }
+
   /* CONTACT */
   .contact-card {
     background: var(--card);
@@ -1089,6 +1283,7 @@
       <a href="#about">О себе</a>
       <a href="#services">Услуги</a>
       <a href="#projects">Работы</a>
+      <a href="#reviews">Отзывы</a>
       <a href="#contact">Контакты</a>
     </div>
   </nav>
@@ -1522,6 +1717,46 @@
   </div>
 </section>
 
+<section id="reviews">
+  <div class="container">
+    <h2 class="section-title">Отзывы</h2>
+    <p class="section-sub">Оставь отзыв или прочитай, что пишут другие</p>
+
+    <div class="reviews-wrap">
+      <form class="review-form" id="reviewForm" novalidate>
+        <h3>Оставить отзыв</h3>
+
+        <div class="form-row">
+          <label for="reviewName">Имя</label>
+          <input type="text" id="reviewName" maxlength="60" autocomplete="name" placeholder="Как вас зовут">
+        </div>
+
+        <div class="form-row">
+          <label>Оценка</label>
+          <div class="star-input" id="starInput" role="radiogroup" aria-label="Оценка от 1 до 5">
+            <button type="button" data-val="1" aria-label="1 звезда">★</button>
+            <button type="button" data-val="2" aria-label="2 звезды">★</button>
+            <button type="button" data-val="3" aria-label="3 звезды">★</button>
+            <button type="button" data-val="4" aria-label="4 звезды">★</button>
+            <button type="button" data-val="5" aria-label="5 звёзд">★</button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="reviewText">Отзыв</label>
+          <textarea id="reviewText" maxlength="1000" placeholder="Что понравилось, что нет — всё по делу"></textarea>
+        </div>
+
+        <div class="form-error" id="reviewError"></div>
+
+        <button type="submit" class="btn btn-primary">Опубликовать отзыв</button>
+      </form>
+
+      <div class="reviews-list" id="reviewsList"></div>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="container">
     <div class="contact-card">
@@ -1552,6 +1787,145 @@
     © 2026 Андрей. Сделано вручную, без конструкторов.
   </div>
 </footer>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'portfolio_reviews_v1';
+  const form = document.getElementById('reviewForm');
+  const nameInput = document.getElementById('reviewName');
+  const textInput = document.getElementById('reviewText');
+  const errorBox = document.getElementById('reviewError');
+  const starInput = document.getElementById('starInput');
+  const starButtons = starInput.querySelectorAll('button');
+  const list = document.getElementById('reviewsList');
+
+  let rating = 0;
+
+  function setRating(val) {
+    rating = val;
+    starButtons.forEach(btn => {
+      btn.classList.toggle('on', Number(btn.dataset.val) <= val);
+    });
+  }
+
+  starButtons.forEach(btn => {
+    const val = Number(btn.dataset.val);
+    btn.addEventListener('click', () => setRating(val));
+    btn.addEventListener('mouseenter', () => {
+      starInput.classList.add('hover');
+      starButtons.forEach(b => {
+        b.classList.toggle('hover-on', Number(b.dataset.val) <= val);
+      });
+    });
+  });
+  starInput.addEventListener('mouseleave', () => {
+    starInput.classList.remove('hover');
+    starButtons.forEach(b => b.classList.remove('hover-on'));
+  });
+
+  function loadReviews() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveReviews(reviews) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+  }
+
+  function escapeHtml(s) {
+    return s
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function formatDate(ts) {
+    const d = new Date(ts);
+    return d.toLocaleDateString('ru-RU', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    });
+  }
+
+  function renderStars(n) {
+    let html = '';
+    for (let i = 1; i <= 5; i++) {
+      html += i <= n ? '★' : '<span class="off">★</span>';
+    }
+    return html;
+  }
+
+  function render() {
+    const reviews = loadReviews();
+    if (reviews.length === 0) {
+      list.innerHTML = '<div class="reviews-empty">Отзывов пока нет. Будь первым 🚀</div>';
+      return;
+    }
+    list.innerHTML = reviews.map(r => `
+      <div class="review" data-id="${r.id}">
+        <button class="review-delete" type="button" aria-label="Удалить отзыв" title="Удалить">✕</button>
+        <div class="review-head">
+          <div class="review-avatar">${escapeHtml(r.name.charAt(0).toUpperCase())}</div>
+          <div class="review-meta">
+            <div class="review-name">${escapeHtml(r.name)}</div>
+            <div class="review-date">${escapeHtml(formatDate(r.createdAt))}</div>
+          </div>
+          <div class="review-stars" aria-label="${r.rating} из 5">${renderStars(r.rating)}</div>
+        </div>
+        <div class="review-text">${escapeHtml(r.text)}</div>
+      </div>
+    `).join('');
+  }
+
+  list.addEventListener('click', (e) => {
+    const btn = e.target.closest('.review-delete');
+    if (!btn) return;
+    const card = btn.closest('.review');
+    if (!card) return;
+    if (!confirm('Удалить этот отзыв?')) return;
+    const id = card.dataset.id;
+    const reviews = loadReviews().filter(r => String(r.id) !== String(id));
+    saveReviews(reviews);
+    render();
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errorBox.textContent = '';
+
+    const name = nameInput.value.trim();
+    const text = textInput.value.trim();
+
+    if (!name) { errorBox.textContent = 'Укажи имя'; return; }
+    if (rating < 1) { errorBox.textContent = 'Поставь оценку от 1 до 5'; return; }
+    if (text.length < 5) { errorBox.textContent = 'Отзыв слишком короткий'; return; }
+
+    const reviews = loadReviews();
+    reviews.unshift({
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      name,
+      rating,
+      text,
+      createdAt: Date.now()
+    });
+    saveReviews(reviews);
+
+    nameInput.value = '';
+    textInput.value = '';
+    setRating(0);
+    render();
+  });
+
+  render();
+})();
+</script>
 
 </body>
 </html>

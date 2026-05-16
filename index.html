@@ -1131,23 +1131,54 @@
     word-wrap: break-word;
   }
 
-  .review-delete {
+  .review-actions {
     position: absolute;
     top: 14px;
     right: 14px;
+    display: flex;
+    gap: 2px;
+  }
+
+  .review-action {
     background: none;
     border: none;
     color: var(--muted);
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     padding: 4px 8px;
     border-radius: 6px;
     transition: background 0.2s, color 0.2s;
+    line-height: 1;
   }
 
-  .review-delete:hover {
+  .review-action.edit:hover {
+    background: rgba(76, 175, 80, 0.12);
+    color: var(--accent2);
+  }
+
+  .review-action.delete:hover {
     background: rgba(233, 69, 96, 0.1);
     color: var(--accent);
+  }
+
+  .review-edit-form .form-row {
+    margin-bottom: 12px;
+  }
+
+  .review-edit-form .star-input {
+    font-size: 24px;
+  }
+
+  .review-edit-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .review-edit-buttons .btn {
+    padding: 10px 20px;
+    font-size: 14px;
   }
 
   @media (max-width: 768px) {
@@ -1800,28 +1831,41 @@
   const list = document.getElementById('reviewsList');
 
   let rating = 0;
+  let editingId = null;
 
-  function setRating(val) {
-    rating = val;
-    starButtons.forEach(btn => {
+  function paintStars(container, val) {
+    container.querySelectorAll('button').forEach(btn => {
       btn.classList.toggle('on', Number(btn.dataset.val) <= val);
     });
   }
 
-  starButtons.forEach(btn => {
-    const val = Number(btn.dataset.val);
-    btn.addEventListener('click', () => setRating(val));
-    btn.addEventListener('mouseenter', () => {
-      starInput.classList.add('hover');
-      starButtons.forEach(b => {
-        b.classList.toggle('hover-on', Number(b.dataset.val) <= val);
+  function setRating(val) {
+    rating = val;
+    paintStars(starInput, val);
+  }
+
+  function bindStarInput(container, getVal, setVal) {
+    const buttons = container.querySelectorAll('button');
+    buttons.forEach(btn => {
+      const val = Number(btn.dataset.val);
+      btn.addEventListener('click', () => {
+        setVal(val);
+        paintStars(container, val);
+      });
+      btn.addEventListener('mouseenter', () => {
+        container.classList.add('hover');
+        buttons.forEach(b => {
+          b.classList.toggle('hover-on', Number(b.dataset.val) <= val);
+        });
       });
     });
-  });
-  starInput.addEventListener('mouseleave', () => {
-    starInput.classList.remove('hover');
-    starButtons.forEach(b => b.classList.remove('hover-on'));
-  });
+    container.addEventListener('mouseleave', () => {
+      container.classList.remove('hover');
+      buttons.forEach(b => b.classList.remove('hover-on'));
+    });
+  }
+
+  bindStarInput(starInput, () => rating, (v) => { rating = v; });
 
   function loadReviews() {
     try {
@@ -1862,37 +1906,129 @@
     return html;
   }
 
+  function viewMarkup(r) {
+    const edited = r.updatedAt && r.updatedAt !== r.createdAt
+      ? ` <span title="${escapeHtml(formatDate(r.updatedAt))}">(ред.)</span>`
+      : '';
+    return `
+      <div class="review-actions">
+        <button class="review-action edit" type="button" data-action="edit" aria-label="Редактировать отзыв" title="Редактировать">✎</button>
+        <button class="review-action delete" type="button" data-action="delete" aria-label="Удалить отзыв" title="Удалить">✕</button>
+      </div>
+      <div class="review-head">
+        <div class="review-avatar">${escapeHtml(r.name.charAt(0).toUpperCase())}</div>
+        <div class="review-meta">
+          <div class="review-name">${escapeHtml(r.name)}</div>
+          <div class="review-date">${escapeHtml(formatDate(r.createdAt))}${edited}</div>
+        </div>
+        <div class="review-stars" aria-label="${r.rating} из 5">${renderStars(r.rating)}</div>
+      </div>
+      <div class="review-text">${escapeHtml(r.text)}</div>
+    `;
+  }
+
+  function editMarkup(r) {
+    const stars = [1,2,3,4,5].map(i =>
+      `<button type="button" data-val="${i}" class="${i <= r.rating ? 'on' : ''}" aria-label="${i}">★</button>`
+    ).join('');
+    return `
+      <form class="review-edit-form" data-edit-form>
+        <div class="form-row">
+          <label>Имя</label>
+          <input type="text" data-field="name" maxlength="60" value="${escapeHtml(r.name)}">
+        </div>
+        <div class="form-row">
+          <label>Оценка</label>
+          <div class="star-input" data-edit-stars role="radiogroup">${stars}</div>
+        </div>
+        <div class="form-row">
+          <label>Отзыв</label>
+          <textarea data-field="text" maxlength="1000">${escapeHtml(r.text)}</textarea>
+        </div>
+        <div class="form-error" data-edit-error></div>
+        <div class="review-edit-buttons">
+          <button type="submit" class="btn btn-primary">Сохранить</button>
+          <button type="button" class="btn btn-outline" data-action="cancel">Отмена</button>
+        </div>
+      </form>
+    `;
+  }
+
   function render() {
     const reviews = loadReviews();
     if (reviews.length === 0) {
       list.innerHTML = '<div class="reviews-empty">Отзывов пока нет. Будь первым 🚀</div>';
       return;
     }
-    list.innerHTML = reviews.map(r => `
-      <div class="review" data-id="${r.id}">
-        <button class="review-delete" type="button" aria-label="Удалить отзыв" title="Удалить">✕</button>
-        <div class="review-head">
-          <div class="review-avatar">${escapeHtml(r.name.charAt(0).toUpperCase())}</div>
-          <div class="review-meta">
-            <div class="review-name">${escapeHtml(r.name)}</div>
-            <div class="review-date">${escapeHtml(formatDate(r.createdAt))}</div>
-          </div>
-          <div class="review-stars" aria-label="${r.rating} из 5">${renderStars(r.rating)}</div>
-        </div>
-        <div class="review-text">${escapeHtml(r.text)}</div>
-      </div>
-    `).join('');
+    list.innerHTML = reviews.map(r => {
+      const body = String(r.id) === String(editingId) ? editMarkup(r) : viewMarkup(r);
+      return `<div class="review" data-id="${r.id}">${body}</div>`;
+    }).join('');
+
+    if (editingId) {
+      const card = list.querySelector(`.review[data-id="${CSS.escape(String(editingId))}"]`);
+      if (card) {
+        const stars = card.querySelector('[data-edit-stars]');
+        const review = reviews.find(r => String(r.id) === String(editingId));
+        let editRating = review ? review.rating : 0;
+        bindStarInput(stars, () => editRating, (v) => { editRating = v; });
+        stars.dataset.value = String(editRating);
+        stars.addEventListener('click', (e) => {
+          const btn = e.target.closest('button[data-val]');
+          if (btn) stars.dataset.value = btn.dataset.val;
+        });
+      }
+    }
   }
 
   list.addEventListener('click', (e) => {
-    const btn = e.target.closest('.review-delete');
-    if (!btn) return;
-    const card = btn.closest('.review');
+    const actionBtn = e.target.closest('[data-action]');
+    if (!actionBtn) return;
+    const card = actionBtn.closest('.review');
     if (!card) return;
-    if (!confirm('Удалить этот отзыв?')) return;
     const id = card.dataset.id;
-    const reviews = loadReviews().filter(r => String(r.id) !== String(id));
+    const action = actionBtn.dataset.action;
+
+    if (action === 'delete') {
+      if (!confirm('Удалить этот отзыв?')) return;
+      const reviews = loadReviews().filter(r => String(r.id) !== String(id));
+      saveReviews(reviews);
+      if (String(editingId) === String(id)) editingId = null;
+      render();
+    } else if (action === 'edit') {
+      editingId = id;
+      render();
+    } else if (action === 'cancel') {
+      editingId = null;
+      render();
+    }
+  });
+
+  list.addEventListener('submit', (e) => {
+    const editForm = e.target.closest('[data-edit-form]');
+    if (!editForm) return;
+    e.preventDefault();
+    const card = editForm.closest('.review');
+    if (!card) return;
+    const id = card.dataset.id;
+    const errorBox = editForm.querySelector('[data-edit-error]');
+    errorBox.textContent = '';
+
+    const name = editForm.querySelector('[data-field="name"]').value.trim();
+    const text = editForm.querySelector('[data-field="text"]').value.trim();
+    const stars = editForm.querySelector('[data-edit-stars]');
+    const newRating = Number(stars.dataset.value || 0);
+
+    if (!name) { errorBox.textContent = 'Укажи имя'; return; }
+    if (newRating < 1) { errorBox.textContent = 'Поставь оценку от 1 до 5'; return; }
+    if (text.length < 5) { errorBox.textContent = 'Отзыв слишком короткий'; return; }
+
+    const reviews = loadReviews().map(r => {
+      if (String(r.id) !== String(id)) return r;
+      return { ...r, name, text, rating: newRating, updatedAt: Date.now() };
+    });
     saveReviews(reviews);
+    editingId = null;
     render();
   });
 

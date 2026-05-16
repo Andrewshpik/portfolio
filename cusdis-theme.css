@@ -1,0 +1,40 @@
+html, body {
+  background: #b5ead7 !important;
+  color: #163d2c !important;
+}
+
+input, textarea {
+  background: #ffffff !important;
+  color: #163d2c !important;
+  border-color: rgba(22, 61, 44, 0.25) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #2c5a44 !important;
+  opacity: 0.7;
+}
+
+input:focus, textarea:focus {
+  border-color: #163d2c !important;
+  box-shadow: 0 0 0 3px rgba(22, 61, 44, 0.15) !important;
+}
+
+button {
+  background: #163d2c !important;
+  color: #b5ead7 !important;
+  border: none !important;
+}
+
+button:hover {
+  background: #0d2a1e !important;
+}
+
+a {
+  color: #163d2c !important;
+}
+
+.cusdis_comment_count,
+.dark\:text-gray-500,
+.text-gray-500 {
+  color: #2c5a44 !important;
+}

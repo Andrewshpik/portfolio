@@ -1779,15 +1779,40 @@ window.CUSDIS_LOCALE = {
     .dark\\:text-gray-100, .dark\\:text-gray-500 { color: #163d2c !important; }
   `;
 
+  function hideTopForm(doc) {
+    const root = doc.getElementById('root') || doc.body;
+    if (!root) return;
+    const forms = root.querySelectorAll('form');
+    forms.forEach(form => {
+      const isInReplyThread = form.closest('.border-l-2');
+      if (!isInReplyThread) {
+        form.style.display = 'none';
+        const wrapper = form.parentElement;
+        if (wrapper && wrapper.children.length === 1) {
+          wrapper.style.display = 'none';
+        }
+      } else {
+        form.style.display = '';
+      }
+    });
+  }
+
   function injectMint(iframe) {
     try {
       const doc = iframe.contentDocument;
       if (!doc || !doc.head) return false;
-      if (doc.getElementById('mint-cusdis')) return true;
-      const style = doc.createElement('style');
-      style.id = 'mint-cusdis';
-      style.textContent = MINT_CSS;
-      doc.head.appendChild(style);
+      if (!doc.getElementById('mint-cusdis')) {
+        const style = doc.createElement('style');
+        style.id = 'mint-cusdis';
+        style.textContent = MINT_CSS;
+        doc.head.appendChild(style);
+      }
+      hideTopForm(doc);
+      if (!doc.__cusdisFormObserver && doc.body) {
+        const obs = new MutationObserver(() => hideTopForm(doc));
+        obs.observe(doc.body, { childList: true, subtree: true });
+        doc.__cusdisFormObserver = obs;
+      }
       return true;
     } catch (e) {
       return false;

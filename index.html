@@ -1664,31 +1664,92 @@
         data-page-id="portfolio-home"
         data-page-url="https://andrewshpik.github.io/portfolio/"
         data-page-title="Отзывы — Портфолио Андрея"
-        data-theme="https://andrewshpik.github.io/portfolio/cusdis-theme.css"
-        data-lang="ru">
+        data-theme="light">
       </div>
       <script>
-        window.CUSDIS_LOCALES = {
-          ru: {
-            powered_by: 'Работает на {{name}}',
-            post_comment: 'Отправить',
-            loading: 'Загрузка',
-            submitting: 'Отправка...',
-            posted: 'Отзыв отправлен. Появится после одобрения.',
-            post_a_comment: 'Оставить отзыв',
-            reply_placeholder: 'Ваш отзыв...',
-            email: 'Email',
-            email_required: 'Email (обязательно)',
-            nickname: 'Имя',
-            placeholder_for_optional_email: 'Email (необязательно)',
-            show_more: 'Показать ещё',
-            waiting_for_approval: 'Ожидает одобрения',
-            no_comment: 'Пока нет отзывов. Будь первым!',
-            reply: 'Ответить'
-          }
+        window.CUSDIS_LOCALE = {
+          powered_by: 'Работает на Cusdis',
+          post_comment: 'Отправить',
+          loading: 'Загрузка',
+          email: 'Email (необязательно)',
+          nickname: 'Имя',
+          reply_placeholder: 'Ваш отзыв...',
+          reply_btn: 'Ответить',
+          sending: 'Отправка...',
+          mod_badge: 'МОД',
+          content_is_required: 'Текст отзыва обязателен',
+          nickname_is_required: 'Имя обязательно',
+          comment_has_been_sent: 'Спасибо! Отзыв отправлен и появится после проверки.'
         };
       </script>
       <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+      <script>
+        (function () {
+          const MINT_CSS = `
+            html, body { background: #b5ead7 !important; color: #163d2c !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; }
+            input, textarea {
+              background: #ffffff !important;
+              color: #163d2c !important;
+              border: 1px solid rgba(22, 61, 44, 0.2) !important;
+              border-radius: 8px !important;
+            }
+            input::placeholder, textarea::placeholder { color: #2c5a44 !important; opacity: 0.55 !important; }
+            input:focus, textarea:focus {
+              outline: none !important;
+              border-color: #163d2c !important;
+              box-shadow: 0 0 0 3px rgba(22, 61, 44, 0.15) !important;
+            }
+            button, .cusdis-btn {
+              background: #163d2c !important;
+              color: #b5ead7 !important;
+              border: none !important;
+              border-radius: 8px !important;
+            }
+            button:hover { background: #0d2a1e !important; }
+            a { color: #163d2c !important; }
+            .text-gray-500, .text-gray-400, .text-gray-300, .text-xs { color: #2c5a44 !important; }
+            .dark\\:text-gray-100, .dark\\:text-gray-500 { color: #163d2c !important; }
+          `;
+
+          function inject(iframe) {
+            try {
+              const doc = iframe.contentDocument;
+              if (!doc || !doc.head) return false;
+              if (doc.getElementById('mint-cusdis')) return true;
+              const style = doc.createElement('style');
+              style.id = 'mint-cusdis';
+              style.textContent = MINT_CSS;
+              doc.head.appendChild(style);
+              return true;
+            } catch (e) {
+              return false;
+            }
+          }
+
+          function watch() {
+            const wrap = document.querySelector('.cusdis-wrap');
+            if (!wrap) return;
+            const tryInject = () => {
+              const iframe = wrap.querySelector('iframe');
+              if (!iframe) return false;
+              iframe.addEventListener('load', () => inject(iframe));
+              return inject(iframe);
+            };
+            if (tryInject()) return;
+            const obs = new MutationObserver(() => {
+              if (tryInject()) obs.disconnect();
+            });
+            obs.observe(wrap, { childList: true, subtree: true });
+            setTimeout(() => obs.disconnect(), 15000);
+          }
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', watch);
+          } else {
+            watch();
+          }
+        })();
+      </script>
     </div>
 
     <div class="reviews-divider">или через GitHub-аккаунт</div>
